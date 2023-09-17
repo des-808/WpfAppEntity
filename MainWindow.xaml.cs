@@ -48,7 +48,7 @@ namespace WpfAppEntity
 
         private void delBtn_Click(object sender, RoutedEventArgs e)
         {
-            Hero? hero  = heroesList.SelectedItem as Hero;
+            Hero? hero  = heroesList.SelectedItem as Hero; 
             if(hero is null) {return; }
             db.Heroes.Remove(hero);
             db.SaveChanges();
