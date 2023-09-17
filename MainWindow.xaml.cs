@@ -32,7 +32,7 @@ namespace WpfAppEntity
             db.Heroes.Load();
             DataContext = db.Heroes.Local.ToObservableCollection();
         }
-        private void addBtn_Click(object sender, RoutedEventArgs e)
+        private void addBtn_Click(object sender, RoutedEventArgs e) 
         {
             //Hero? hero = heroesList.SelectedItem as Hero;
             //if (hero is null) { return; }
