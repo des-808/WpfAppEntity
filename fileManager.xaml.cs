@@ -23,5 +23,10 @@ namespace WpfAppEntity
         {
             InitializeComponent();
         }
+
+        private void closeBtn_click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

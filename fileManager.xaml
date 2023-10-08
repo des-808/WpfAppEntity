@@ -10,7 +10,7 @@
         <DockPanel>
             <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" >
                 <Label  Margin="130,4,10,4">Папка: </Label>
-                <ComboBox Width="250" Height="24"></ComboBox>
+                <ComboBox Width="250" Height="24" IsTextSearchEnabled="True" IsEditable="True">Мой Компьютер</ComboBox>
             </StackPanel>
             <ListView DockPanel.Dock="Left" Width="170" x:Name="listViewHotIcon" ItemsSource="{Binding}" Margin="5,0,2,5" >
                 
@@ -20,14 +20,14 @@
                 <StackPanel Orientation="Vertical" Margin="0,0,0,2">
                     <StackPanel Orientation="Horizontal" Height="24">
                         <Label>Имя Файла: </Label>
-                        <ComboBox x:Name="comboBox" Margin="4,0,3,0" Width="232"/>
+                        <ComboBox x:Name="comboBox" Margin="4,0,3,0" Width="232" IsTextSearchEnabled="True" IsEditable="True" />
                         <Button Content="Сохранить" Margin="1,0,0,0" Width="100" />
                         
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="24" Margin="0,4,0,0">
                         <Label >Тип Файла:</Label>
-                        <ComboBox x:Name="comboBox2" Margin="7,0,3,0" Width="233"/>
-                        <Button Content="Отмена" Margin="1,0,0,0"  Width="100" />
+                        <ComboBox x:Name="comboBox2" Margin="7,0,3,0" Width="233" IsTextSearchEnabled="True" IsEditable="True"/>
+                        <Button Content="Отмена" Margin="1,0,0,0"  Width="100" Click="closeBtn_click" />
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
