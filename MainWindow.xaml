@@ -35,17 +35,22 @@
             </ListBox.ItemTemplate>
             <ListBox.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Копировать" Click="copyBtn_Click" />
+                    
+                    <MenuItem Header="Выбрать всё" Click="selectAll_Click" Command="SelectAll"/>
                     <Separator/>
-                    <MenuItem Header="Добавить" Click="addBtn_Click"/>
+                    <MenuItem Header="Копировать" Click="copyBtn_Click" Command="Copy"/>
                     <Separator/>
-                    <MenuItem Header="Удалить" Click="delBtn_Click"/>
+                    <MenuItem Header="Добавить" Click="addBtn_Click" Command="New"/>
                     <Separator/>
-                    <MenuItem Header="Изменить" Click="editBtn_Click"/>
+                    <MenuItem Header="Удалить" Click="delBtn_Click" Command="Delete"/>
                     <Separator/>
-                    <MenuItem Header="Сохранить в файл..."/>
+                    <MenuItem Header="Изменить" Click="editBtn_Click" Command="Replace"/>
                     <Separator/>
-                    <MenuItem Header="Поиск..." IsCheckable="True"/>
+                    <MenuItem Header="Сохранить в файл..." Click="fileSave_Click" Command="Save"/>
+                    <Separator/>
+                    <MenuItem Header="Сохранить Всё" Click="fileSaveAs_Click"  /><!--Command="SaveAs"-->
+                    <Separator/>
+                    <MenuItem Header="Поиск..." IsCheckable="True" Command="Find"/>
                 </ContextMenu>
             </ListBox.ContextMenu>
         </ListBox>

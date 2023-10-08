@@ -28,7 +28,6 @@ namespace WpfAppEntity
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
             Hero? hero = new Hero();
-            
             hero.Name = nameTextBox.Text;
             hero.Race = raceTextBox.Text;
            // int age = Convert.ToInt32(ageTextBox.Text);

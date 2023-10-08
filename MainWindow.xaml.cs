@@ -81,6 +81,31 @@ namespace WpfAppEntity
             heroesList.Items.Refresh();
         }
 
+        private void fileSave_Click(object sender, RoutedEventArgs e)
+        {
+            Hero? hero = heroesList.SelectedItem as Hero;
+            if (hero is null) return;
+            Files.files(@"c:\app\content.txt",hero);
+            
+        }
+        public void fileSaveAs_Click(object sender, RoutedEventArgs e)
+        {
+            fileManager fileSave = new();
+            fileSave.ShowDialog();
+            //List<Hero> list = db.Heroes.ToList();
+            //Files.files(@"c:\app\content.txt", list);
+        }
+
+        public void selectAll_Click(object sender, EventArgs e)
+        {
+            List<Hero> list = new List<Hero>();
+            foreach (var item in list)
+            {
+
+
+            }
+        }
+
         private void heroesList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Hero? hero = heroesList.SelectedItem as Hero;
@@ -114,6 +139,10 @@ namespace WpfAppEntity
             db.SaveChanges();
             heroesList.Items.Refresh();
         }
+
+        
+
+
     }
    
 }
