@@ -8,7 +8,6 @@
         Title="Lord Of The Ring App" Height="450" Width="400" ResizeMode="NoResize">
     <Grid>
         <Grid.ColumnDefinitions>
-            
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -16,26 +15,21 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-
-        
         <ListBox Grid.Column="0" Grid.Row="0" x:Name="heroesList" ItemsSource="{Binding}" Margin="10" SelectionChanged="heroesList_SelectionChanged">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        
                         <DockPanel LastChildFill="False">
                             <TextBlock FontSize="16" FontWeight="Bold" Text="{Binding Name}"/>
                             <TextBlock FontSize="13" Text="{Binding Race}" Margin="10,0,10,0"/>
                             <TextBlock FontSize="13" Text="{Binding Age}" Margin="10,0,10,0"/>
                             <TextBlock FontSize="14" FontWeight="Bold" Text="{Binding Weapon}" Margin="10,0,10,0"/>
                         </DockPanel>
-                        
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
             <ListBox.ContextMenu>
                 <ContextMenu>
-                    
                     <MenuItem Header="Выбрать всё" Click="selectAll_Click" Command="SelectAll"/>
                     <Separator/>
                     <MenuItem Header="Копировать" Click="copyBtn_Click" Command="Copy"/>
@@ -48,30 +42,12 @@
                     <Separator/>
                     <MenuItem Header="Сохранить в файл..." Click="fileSave_Click" Command="Save"/>
                     <Separator/>
-                    <MenuItem Header="Сохранить Всё" Click="fileSaveAs_Click"  /><!--Command="SaveAs"-->
+                    <MenuItem Header="Сохранить Всё" Click="fileSaveAs_Click"  />
+                    <!--Command="SaveAs"-->
                     <Separator/>
                     <MenuItem Header="Поиск..." IsCheckable="True" Command="Find"/>
                 </ContextMenu>
             </ListBox.ContextMenu>
         </ListBox>
-
-        <!--<StackPanel  Grid.Column="0" Grid.Row="1" Orientation="Horizontal">
-            <Button Content="Добавить" Margin="20,10,20,10" Padding="20,0,20,0" Click="addBtn_Click"/>
-            <Button Content="Удалить"  Margin="20,10,20,10" Padding="20,0,20,0" Click="delBtn_Click"/>
-            <Button Content="Изменить" Margin="20,10,20,10" Padding="20,0,20,0" Click="editBtn_Click" />
-        </StackPanel>-->
-        
-        <!--<StackPanel Grid.Row="0" Grid.Column="1" Margin="10">
-            <TextBlock Text="Name: " Margin="10"/>
-            <TextBox x:Name="nameTextBox" Margin="10"/>
-            <TextBlock Text="Race: " Margin="10"/>
-            <TextBox x:Name="raceTextBox" Margin="10"/>
-            <TextBlock Text="Age: " Margin="10"/>
-            <TextBox x:Name="ageTextBox" Margin="10"/>
-            <TextBlock Text="Weapon: " Margin="10"/>
-            <TextBox x:Name="weaponTextBox" Margin="10"/>
-        </StackPanel>-->
-
-        
     </Grid>
 </Window>
