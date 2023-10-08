@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfAppEntity"
         mc:Ignorable="d"
-        Title="Lord Of The Ring App" Height="450" Width="800" ResizeMode="NoResize">
+        Title="Lord Of The Ring App" Height="450" Width="400" ResizeMode="NoResize">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1.2*"/>
+            
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -16,25 +16,47 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <ListBox x:Name="heroesList" ItemsSource="{Binding}" Margin="10" SelectionChanged="heroesList_SelectionChanged">
+
+        
+        <ListBox Grid.Column="0" Grid.Row="0" x:Name="heroesList" ItemsSource="{Binding}" Margin="10" SelectionChanged="heroesList_SelectionChanged">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <TextBlock FontSize="16" FontWeight="Bold" Text="{Binding Name}"/>
-                        <TextBlock FontSize="13" Text="{Binding Race}"/>
-                        <TextBlock FontSize="13" Text="{Binding Age}"/>
-                        <TextBlock FontSize="14" FontWeight="Bold" Text="{Binding Weapon}"/>
+                        
+                        <DockPanel LastChildFill="False">
+                            <TextBlock FontSize="16" FontWeight="Bold" Text="{Binding Name}"/>
+                            <TextBlock FontSize="13" Text="{Binding Race}" Margin="10,0,10,0"/>
+                            <TextBlock FontSize="13" Text="{Binding Age}" Margin="10,0,10,0"/>
+                            <TextBlock FontSize="14" FontWeight="Bold" Text="{Binding Weapon}" Margin="10,0,10,0"/>
+                        </DockPanel>
+                        
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Копировать" Click="copyBtn_Click" />
+                    <Separator/>
+                    <MenuItem Header="Добавить" Click="addBtn_Click"/>
+                    <Separator/>
+                    <MenuItem Header="Удалить" Click="delBtn_Click"/>
+                    <Separator/>
+                    <MenuItem Header="Изменить" Click="editBtn_Click"/>
+                    <Separator/>
+                    <MenuItem Header="Сохранить в файл..."/>
+                    <Separator/>
+                    <MenuItem Header="Поиск..." IsCheckable="True"/>
+                </ContextMenu>
+            </ListBox.ContextMenu>
         </ListBox>
 
-        <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal">
+        <!--<StackPanel  Grid.Column="0" Grid.Row="1" Orientation="Horizontal">
             <Button Content="Добавить" Margin="20,10,20,10" Padding="20,0,20,0" Click="addBtn_Click"/>
-            <Button Content="Удалить" Margin="20,10,20,10" Padding="20,0,20,0" Click="delBtn_Click"/>
-        </StackPanel>
-
-        <StackPanel Grid.Row="0" Grid.Column="1" Margin="10">
+            <Button Content="Удалить"  Margin="20,10,20,10" Padding="20,0,20,0" Click="delBtn_Click"/>
+            <Button Content="Изменить" Margin="20,10,20,10" Padding="20,0,20,0" Click="editBtn_Click" />
+        </StackPanel>-->
+        
+        <!--<StackPanel Grid.Row="0" Grid.Column="1" Margin="10">
             <TextBlock Text="Name: " Margin="10"/>
             <TextBox x:Name="nameTextBox" Margin="10"/>
             <TextBlock Text="Race: " Margin="10"/>
@@ -43,8 +65,8 @@
             <TextBox x:Name="ageTextBox" Margin="10"/>
             <TextBlock Text="Weapon: " Margin="10"/>
             <TextBox x:Name="weaponTextBox" Margin="10"/>
-        </StackPanel>
+        </StackPanel>-->
 
-        <Button Grid.Row="1" Grid.Column="1" Content="Изменить" Margin="20,10,20,10" Padding="20,0,20,0" Click="editBtn_Click"/>
+        
     </Grid>
 </Window>

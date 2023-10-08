@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.SqlServer.Server;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,14 +15,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace WpfAppEntity
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
+        public delegate void MyDelegate(object heroes);
         AppContext db = new AppContext();
+        internal static object? heroesLists;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -34,37 +36,48 @@ namespace WpfAppEntity
         }
         private void addBtn_Click(object sender, RoutedEventArgs e) 
         {
-            //Hero? hero = heroesList.SelectedItem as Hero;
-            //if (hero is null) { return; }
-            Hero? hero = new Hero(); 
-                hero.Name = nameTextBox.Text;
-                hero.Race = raceTextBox.Text;
-                hero.Age  = Convert.ToInt32(ageTextBox.Text);
-                hero.Weapon = weaponTextBox.Text;
-            db.Heroes.Add(hero);
-            db.SaveChanges();
-            heroesList.Items.Refresh();
+            add_menu addMenu = new(new MyDelegate(AddHeroDbToHeroesList));
+            addMenu.ShowDialog();
         }
 
         private void delBtn_Click(object sender, RoutedEventArgs e)
         {
             Hero? hero  = heroesList.SelectedItem as Hero; 
             if(hero is null) {return; }
-            db.Heroes.Remove(hero);
-            db.SaveChanges();
-            heroesList.Items.Refresh();
+            if (MessageBox.Show("Уверен что хочешь удалить?",
+            "DELETE", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                db.Heroes.Remove(hero);
+                db.SaveChanges();
+                heroesList.Items.Refresh();
+            }
         }
 
         private void editBtn_Click(object sender, RoutedEventArgs e)
         {
             Hero? hero = heroesList.SelectedItem as Hero;
             if (hero is null) return;
-          hero.Name  =  nameTextBox.Text;
-          hero.Race  =  raceTextBox.Text;
-            hero.Age = Convert.ToInt32( ageTextBox.Text);
-           hero.Weapon =  weaponTextBox.Text;
-           hero = db.Heroes.Find(hero.Id);
-           db.SaveChanges();
+
+            EditHero editHero = new(new MyDelegate(EditHeroDbToHeroesList));
+            editHero.nameTextBox.Text = hero.Name;
+            editHero.raceTextBox.Text = hero.Race;
+            editHero.ageTextBox.Text = hero.Age.ToString();
+            editHero.weaponTextBox.Text = hero.Weapon;
+            editHero.ShowDialog();
+        }
+
+
+        private void copyBtn_Click(Object sender, RoutedEventArgs e)
+        {
+            Hero hero = heroesList.SelectedItem as Hero;
+            if (hero is null) return;
+            Hero newHero = new Hero();
+            newHero.Name = hero.Name;
+            newHero.Race = hero.Race;
+            newHero.Age = hero.Age;
+            newHero.Weapon = hero.Weapon;
+            db.Heroes.Add(newHero);
+            db.SaveChanges();
             heroesList.Items.Refresh();
         }
 
@@ -72,10 +85,35 @@ namespace WpfAppEntity
         {
             Hero? hero = heroesList.SelectedItem as Hero;
             if (hero is null) return;
-            nameTextBox.Text = hero.Name;
-            raceTextBox.Text = hero.Race;
-            ageTextBox.Text = hero.Age.ToString();
-            weaponTextBox.Text = hero.Weapon;
+        }
+        public void AddHeroDbToHeroesList(object heroes)
+        {
+            Hero heroes2 = heroes as Hero;
+            Hero? hero = new Hero();
+            hero.Name =   heroes2.Name;
+            hero.Race =   heroes2.Race;
+            hero.Age =    heroes2.Age;
+            hero.Weapon = heroes2.Weapon;
+            //Hero? hero2 = new Hero();
+            //hero2 = db.Heroes.Find(hero.Id);
+            db.Heroes.Add(hero);
+            db.SaveChanges();
+            heroesList.Items.Refresh();
+        }
+
+        public void EditHeroDbToHeroesList(object heroes)
+        {
+            Hero heroes2 = heroes as Hero;
+            Hero? hero = heroesList.SelectedItem as Hero;
+            if (hero is null) return;
+            hero.Name = heroes2.Name;
+            hero.Race = heroes2.Race;
+            hero.Age = heroes2.Age;
+            hero.Weapon = heroes2.Weapon;
+            hero = db.Heroes.Find(hero.Id);
+            db.SaveChanges();
+            heroesList.Items.Refresh();
         }
     }
+   
 }
