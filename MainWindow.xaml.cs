@@ -32,7 +32,10 @@ namespace WpfAppEntity
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             db.Heroes.Load();
-            DataContext = db.Heroes.Local.ToObservableCollection();
+            //heroesList.ItemsSource = db.Heroes;
+             DataContext = db.Heroes.Local.ToObservableCollection();
+
+            //DataContext = new ApplicationViewModel(new DefaulDialogService(), new JsonFileService());
         }
         private void addBtn_Click(object sender, RoutedEventArgs e) 
         {

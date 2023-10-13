@@ -8,14 +8,30 @@
         Title="Сохранение данных" Height="460" Width="610" ResizeMode="NoResize">
     <Grid>
         <DockPanel>
-            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" >
+            <StatusBar DockPanel.Dock="Top"  >
+                <StackPanel  Orientation="Horizontal" >
                 <Label  Margin="130,4,10,4">Папка: </Label>
-                <ComboBox Width="250" Height="24" IsTextSearchEnabled="True" IsEditable="True">Мой Компьютер</ComboBox>
+                <ComboBox x:Name="comboBoxSearch" Width="250" Height="24" ItemsSource="{Binding}" IsTextSearchEnabled="True" IsEditable="True">Мой Компьютер</ComboBox>
             </StackPanel>
-            <ListView DockPanel.Dock="Left" Width="170" x:Name="listViewHotIcon" ItemsSource="{Binding}" Margin="5,0,2,5" >
+            </StatusBar >
+            
+            <ListView x:Name="listViewHotIcon" DockPanel.Dock="Left" Width="170"  ItemsSource="{Binding}" Margin="5,0,2,5" >
                 
             </ListView>
-            <ListView DockPanel.Dock="Top" Height="320" Margin="5,0,5,0"></ListView>
+            <ListView x:Name="ListViewDerevo"  DockPanel.Dock="Top" ItemsSource="{Binding}" Height="320" Margin="5,0,5,0">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <DockPanel LastChildFill="False">
+                                <TextBlock FontSize="16" FontWeight="Bold" Text="{Binding Icon}"/>
+                                <TextBlock FontSize="13" Text="{Binding Name}" Margin="10,0,10,0"/>
+                                <TextBlock FontSize="13" Text="{Binding Lable}" Margin="10,0,10,0"/>
+                                <TextBlock FontSize="14" FontWeight="Bold" Text="{Binding Size}" Margin="10,0,10,0"/>
+                            </DockPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListView>
             <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Height="56" >
                 <StackPanel Orientation="Vertical" Margin="0,0,0,2">
                     <StackPanel Orientation="Horizontal" Height="24">

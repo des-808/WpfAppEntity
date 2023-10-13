@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfAppEntity"
+        xmlns:local="clr-namespace:WpfAppEntity" d:DataContext="{d:DesignInstance Type=local:ApplicationViewModel}"
         mc:Ignorable="d"
         Title="Lord Of The Ring App" Height="450" Width="400" ResizeMode="NoResize">
     <Grid>
@@ -40,9 +40,9 @@
                     <Separator/>
                     <MenuItem Header="Изменить" Click="editBtn_Click" Command="Replace"/>
                     <Separator/>
-                    <MenuItem Header="Сохранить в файл..." Click="fileSave_Click" Command="Save"/>
+                    <MenuItem Header="Открыть"  Command="{Binding OpenCommand}"/>
                     <Separator/>
-                    <MenuItem Header="Сохранить Всё" Click="fileSaveAs_Click"  />
+                    <MenuItem Header="Сохранить"  Command="{Binding SaveCommand}" />
                     <!--Command="SaveAs"-->
                     <Separator/>
                     <MenuItem Header="Поиск..." IsCheckable="True" Command="Find"/>
