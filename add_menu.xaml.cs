@@ -33,7 +33,6 @@ namespace WpfAppEntity
             Hero.Age = Convert.ToInt32(ageTextBox.Text);
             Hero.Weapon = weaponTextBox.Text;
             DialogResult = true;
-            //Close();
         }
     }
 }

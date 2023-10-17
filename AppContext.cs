@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace WpfAppEntity
 {
@@ -11,10 +12,11 @@ namespace WpfAppEntity
     {
         public AppContext() {Database.EnsureCreated();}
         public DbSet<Hero> Heroes { get; set; } = null!;
-
+        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=LAPTOP-U7N6H5S8;Initial Catalog=HeroesDB;Integrated Security=True;Connect Timeout=30;Trust Server Certificate=True;");
+            optionsBuilder.UseSqlServer($"Data Source={Environment.MachineName};Initial Catalog=HeroesDB;Integrated Security=True;Connect Timeout=30;Trust Server Certificate=True;");
+            //optionsBuilder.UseSqlServer("Data Source=LAPTOP-U7N6H5S8;Initial Catalog=HeroesDB;Integrated Security=True;Connect Timeout=30;Trust Server Certificate=True;");
         }
     }
 }

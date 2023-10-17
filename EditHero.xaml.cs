@@ -37,10 +37,6 @@ namespace WpfAppEntity
             DialogResult = true;
         }
 
-        private void Cancel_Click(object sender, RoutedEventArgs e)
-        {
-            DialogResult = false;
-            //Close();
-        }
+        private void Cancel_Click(object sender, RoutedEventArgs e){DialogResult = false;}
     }
 }
