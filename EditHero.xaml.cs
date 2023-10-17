@@ -20,28 +20,27 @@ namespace WpfAppEntity
     /// </summary>
     public partial class EditHero : Window
     {
-        MyDelegate d;
-        public EditHero(MyDelegate sender)
+        internal Hero Hero { get; private set; }
+        internal EditHero(Hero hero)
         {
             InitializeComponent();
-            d = sender;
+            Hero = hero;
+            DataContext = Hero;
         }
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
-            Hero? hero = new Hero();
-
-            hero.Name = nameTextBox.Text;
-            hero.Race = raceTextBox.Text;
-            hero.Age = Convert.ToInt32(ageTextBox.Text);
-            hero.Weapon = weaponTextBox.Text;
-            d(hero);
-            Close();
+            Hero.Name = nameTextBox.Text;
+            Hero.Race = raceTextBox.Text;
+            Hero.Age = Convert.ToInt32(ageTextBox.Text);
+            Hero.Weapon = weaponTextBox.Text;
+            DialogResult = true;
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            DialogResult = false;
+            //Close();
         }
     }
 }

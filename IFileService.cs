@@ -9,6 +9,6 @@ namespace WpfAppEntity
     internal interface IFileService
     {
         List<Hero> Open(string filename);
-        void Save(string filename, List<Hero> phoneList);
+        void Save(string filename, List<Hero> heroList);
     }
 }

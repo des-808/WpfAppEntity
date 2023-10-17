@@ -12,21 +12,21 @@ namespace WpfAppEntity
     {
         public List<Hero> Open(string filename)
         {
-            List<Hero> phones = new List<Hero>();
+            List<Hero> heroes = new List<Hero>();
             DataContractJsonSerializer jsonFarmatter = new DataContractJsonSerializer(typeof(List<Hero>));
             using (FileStream fs = new FileStream(filename, FileMode.OpenOrCreate))
             {
-                phones = jsonFarmatter.ReadObject(fs) as List<Hero>;
+                heroes = jsonFarmatter.ReadObject(fs) as List<Hero>;
             }
-            return phones;
+            return heroes;
         }
 
-        public void Save(string filename, List<Hero> phonesList)
+        public void Save(string filename, List<Hero> heroList)
         {
             DataContractJsonSerializer jsonFarmatter = new DataContractJsonSerializer(typeof(List<Hero>));
             using (FileStream fs = new FileStream(filename, FileMode.Create))
             {
-                jsonFarmatter.WriteObject(fs, phonesList);
+                jsonFarmatter.WriteObject(fs, heroList);
             }
         }
     }

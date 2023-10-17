@@ -9,9 +9,7 @@ namespace WpfAppEntity
 {
     internal class AppContext:DbContext
     {
-        public AppContext() {
-        Database.EnsureCreated();
-        }
+        public AppContext() {Database.EnsureCreated();}
         public DbSet<Hero> Heroes { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
