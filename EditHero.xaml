@@ -21,11 +21,11 @@
 
         <StackPanel Grid.Row="0"  Margin="10">
             <TextBlock Text="Name: " Margin="10"/>
-            <TextBox x:Name="nameTextBox" Margin="10" Text="{Binding Name}"/>
+            <TextBox x:Name="nameTextBox" Margin="10"   Text="{Binding Name}"/>
             <TextBlock Text="Race: " Margin="10"/>
-            <TextBox x:Name="raceTextBox" Margin="10" Text="{Binding Race}"/>
+            <TextBox x:Name="raceTextBox" Margin="10"   Text="{Binding Race}"/>
             <TextBlock Text="Age: " Margin="10"/>
-            <TextBox x:Name="ageTextBox" Margin="10" Text="{Binding Age}"/>
+            <TextBox x:Name="ageTextBox" Margin="10"    Text="{Binding Age}"/>
             <TextBlock Text="Weapon: " Margin="10"/>
             <TextBox x:Name="weaponTextBox" Margin="10" Text="{Binding Weapon}"/>
         </StackPanel>
