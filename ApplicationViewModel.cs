@@ -17,6 +17,7 @@ namespace WpfAppEntity
     {
         AppContext db = new AppContext();
         private RelayCommand saveCommand;
+        private RelayCommand allSaveCommand;
         private RelayCommand openCommand;
         private RelayCommand addCommand;
         private RelayCommand copyCommand;
@@ -27,7 +28,7 @@ namespace WpfAppEntity
 
         IFileService fileService;
         IDialogService dialogService;
-
+        
         
         //command save file
         public RelayCommand SaveCommand
@@ -35,16 +36,15 @@ namespace WpfAppEntity
             get
             {
                 return saveCommand ??
-                    (saveCommand = new RelayCommand(obj =>
+                    (saveCommand = new RelayCommand((selectedItem) =>
                     {
                         try
                         {
                             if (dialogService.SaveFileDialog() == true)
                             {
-                                //fileService.Save(dialogService.FilePath, Heroes.ToList());
-                                Hero? hero = selectedHero as Hero;
-                                if (hero is null) return;
-                                Files.files(dialogService.FilePath, hero);
+                                Hero? hero = selectedItem as Hero;
+                                List<Hero> list = new List<Hero>{hero };
+                                fileService.Save(dialogService.FilePath, list);
                                 dialogService.ShowMessage("Файл сохранен");
                             }
                         }
@@ -55,6 +55,30 @@ namespace WpfAppEntity
                     }));
             }
         }
+        //command save file
+        public RelayCommand AllSaveCommand
+        {
+            get
+            {
+                return allSaveCommand ??
+                    (allSaveCommand = new RelayCommand(obj =>
+                    {
+                        try
+                        {
+                            if (dialogService.SaveFileDialog() == true)
+                            {
+                                fileService.Save(dialogService.FilePath, Heroes.ToList());
+                                dialogService.ShowMessage("Файл сохранен");
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            dialogService.ShowMessage(ex.Message);
+                        }
+                    }));
+            }
+        }
+
         //command open file
         public RelayCommand OpenCommand
         {
@@ -176,11 +200,7 @@ namespace WpfAppEntity
         public Hero SelectedHero
         {
             get { return selectedHero; }
-            set
-            {
-                selectedHero = value;
-                OnPropertyChanged("SelectedHero");
-            }
+            set{ selectedHero = value; OnPropertyChanged("SelectedHero");}
         }
 
         public ApplicationViewModel(IDialogService dialogService, IFileService fileService)

@@ -15,7 +15,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <ListBox Grid.Column="0" Grid.Row="0" ItemsSource="{Binding Heroes}" Margin="10" SelectedItem="{Binding SelectedHero}">
+        <ListBox Grid.Column="0" Grid.Row="0" ItemsSource="{Binding Heroes}" Margin="10" SelectedItem="{Binding SelectedHero}" SelectionMode="Extended">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
@@ -43,6 +43,8 @@
                     <MenuItem Header="Открыть из файла"  Command="{Binding OpenCommand}" CommandParameter="{Binding SelectedHero}"/>
                     <Separator/>
                     <MenuItem Header="Сохранить в файл"  Command="{Binding SaveCommand}" CommandParameter="{Binding SelectedHero}" />
+                    <Separator/>
+                    <MenuItem Header="Сохранить всё в файл"  Command="{Binding AllSaveCommand}" CommandParameter="{Binding SelectedHero}" />
                     <Separator/>
                     <MenuItem Header="Поиск..."  Command="{Binding FindCommand}"/>
                 </ContextMenu>

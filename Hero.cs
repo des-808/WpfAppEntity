@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WpfAppEntity
 {
-    internal class Hero : INotifyPropertyChanged
+    public class Hero : INotifyPropertyChanged
     {
         private string? _name;
         private string? _race;
@@ -44,8 +44,7 @@ namespace WpfAppEntity
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            if (PropertyChanged != null)PropertyChanged(this, new PropertyChangedEventArgs(prop));   
         }
     }
 }

@@ -25,7 +25,6 @@ namespace WpfAppEntity
             InitializeComponent();
             DataContext = new ApplicationViewModel(new DefaulDialogService(), new JsonFileService()); 
         }
- 
 
         private void fileSave_Click(object sender, RoutedEventArgs e)
         {
