@@ -16,7 +16,7 @@
 
         <StackPanel Grid.Row="1" Orientation="Horizontal">
             <Button Content="Сохранить" Margin="20,10,20,10" Padding="20,0,20,0" Click="SaveBtn_Click"/>
-            <Button Content="Отмена" Margin="150,10,20,10" Padding="20,0,20,0" Click="Cancel_Click"/>
+            <Button Content="Отмена"    Margin="150,10,20,10" Padding="20,0,20,0" Click="Cancel_Click"/>
         </StackPanel>
 
         <StackPanel Grid.Row="0"  Margin="10">
