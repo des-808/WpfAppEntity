@@ -25,7 +25,7 @@ namespace WpfAppEntity
         public void Save(string filename, List<Hero> heroList)
         {
             DataContractJsonSerializer jsonFarmatter = new DataContractJsonSerializer(typeof(List<Hero>));
-            using (FileStream fs = new FileStream(filename, FileMode.Create))
+            using (FileStream fs = new FileStream(filename, FileMode.Create)) 
             {
                 jsonFarmatter.WriteObject(fs, heroList);
             }
