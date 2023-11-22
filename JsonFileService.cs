@@ -28,6 +28,8 @@ namespace WpfAppEntity
             using (FileStream fs = new FileStream(filename, FileMode.Create)) 
             {
                 jsonFarmatter.WriteObject(fs, heroList);
+
+
             }
         }
     }
