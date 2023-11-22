@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfAppEntity" d:DataContext="{d:DesignInstance Type=local:ApplicationViewModel}"
+        xmlns:local="clr-namespace:WpfAppEntity" 
         mc:Ignorable="d"
         Title="Lord Of The Ring App" Height="450" Width="400" ResizeMode="NoResize">
     <Grid>
@@ -15,37 +15,38 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <ListBox Grid.Column="0" Grid.Row="0" x:Name="heroesList" ItemsSource="{Binding}" Margin="10" SelectionChanged="heroesList_SelectionChanged">
+        <ListBox Grid.Column="0" Grid.Row="0" ItemsSource="{Binding Heroes}" Margin="10" SelectedItem="{Binding SelectedHero}" SelectionMode="Extended">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
                         <DockPanel LastChildFill="False">
-                            <TextBlock FontSize="16" FontWeight="Bold" Text="{Binding Name}"/>
-                            <TextBlock FontSize="13" Text="{Binding Race}" Margin="10,0,10,0"/>
-                            <TextBlock FontSize="13" Text="{Binding Age}" Margin="10,0,10,0"/>
-                            <TextBlock FontSize="14" FontWeight="Bold" Text="{Binding Weapon}" Margin="10,0,10,0"/>
+                            <TextBlock FontSize="16" FontWeight="Bold" Text="{Binding Path=Name}"/>
+                            <TextBlock FontSize="13" Text="{Binding Path=Race}" Margin="10,0,10,0"/>
+                            <TextBlock FontSize="13" Text="{Binding Path=Age}" Margin="10,0,10,0"/>
+                            <TextBlock FontSize="14" FontWeight="Bold" Text="{Binding Path=Weapon}" Margin="10,0,10,0"/>
                         </DockPanel>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
             <ListBox.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Выбрать всё" Click="selectAll_Click" Command="SelectAll"/>
+                    <MenuItem Header="Выбрать всё" Command="{Binding SelectAll}" />
                     <Separator/>
-                    <MenuItem Header="Копировать" Click="copyBtn_Click" Command="Copy"/>
+                    <MenuItem Header="Копировать" Command="{Binding CopyCommand}" CommandParameter="{Binding SelectedHero}"/>
                     <Separator/>
-                    <MenuItem Header="Добавить" Click="addBtn_Click" Command="New"/>
+                    <MenuItem Header="Добавить"  Command="{Binding AddCommand}" CommandParameter="{Binding SelectedHero}"/>
                     <Separator/>
-                    <MenuItem Header="Удалить" Click="delBtn_Click" Command="Delete"/>
+                    <MenuItem Header="Удалить"  Command="{Binding DeleteCommand}" CommandParameter="{Binding SelectedHero}"/>
                     <Separator/>
-                    <MenuItem Header="Изменить" Click="editBtn_Click" Command="Replace"/>
+                    <MenuItem Header="Изменить" Command="{Binding EditCommand}" CommandParameter="{Binding SelectedHero}"/>
                     <Separator/>
-                    <MenuItem Header="Открыть"  Command="{Binding OpenCommand}"/>
+                    <MenuItem Header="Открыть из файла"  Command="{Binding OpenCommand}" CommandParameter="{Binding SelectedHero}"/>
                     <Separator/>
-                    <MenuItem Header="Сохранить"  Command="{Binding SaveCommand}" />
-                    <!--Command="SaveAs"-->
+                    <MenuItem Header="Сохранить в файл"  Command="{Binding SaveCommand}" CommandParameter="{Binding SelectedHero}" />
                     <Separator/>
-                    <MenuItem Header="Поиск..." IsCheckable="True" Command="Find"/>
+                    <MenuItem Header="Сохранить всё в файл"  Command="{Binding AllSaveCommand}" CommandParameter="{Binding SelectedHero}" />
+                    <Separator/>
+                    <MenuItem Header="Поиск..."  Command="{Binding FindCommand}"/>
                 </ContextMenu>
             </ListBox.ContextMenu>
         </ListBox>

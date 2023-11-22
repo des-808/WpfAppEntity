@@ -18,23 +18,21 @@ namespace WpfAppEntity
 {
     public partial class add_menu : Window
     {
-        MyDelegate d;
-        public add_menu(MyDelegate sender)
+        internal Hero Hero { get; set; }
+        internal add_menu(Hero hero) 
         {
             InitializeComponent();
-            d = sender;
+            Hero = hero;
+            DataContext = Hero;
         }
         private void Cancel_Click(object sender, RoutedEventArgs e)=>Close();
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
-            Hero? hero = new Hero();
-            hero.Name = nameTextBox.Text;
-            hero.Race = raceTextBox.Text;
-           // int age = Convert.ToInt32(ageTextBox.Text);
-            hero.Age = Convert.ToInt32(ageTextBox.Text);
-            hero.Weapon = weaponTextBox.Text;
-            d(hero);
-            Close();
+            Hero.Name = nameTextBox.Text;
+            Hero.Race = raceTextBox.Text;
+            Hero.Age = Convert.ToInt32(ageTextBox.Text);
+            Hero.Weapon = weaponTextBox.Text;
+            DialogResult = true;
         }
     }
 }
