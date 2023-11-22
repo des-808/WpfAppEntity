@@ -29,6 +29,7 @@ namespace WpfAppEntity
             {
                 jsonFarmatter.WriteObject(fs, heroList);
 
+                Console.WriteLine("Привет Мир!!");
 
             }
         }
